@@ -1,19 +1,20 @@
-<h2>Song: <%= @song.name %></h2>
-<h3>Album: <%= @song.album.name %></h3>
+<h2>Volunteer: <%= @volunteer.name %></h2>
+<h3>Project: <%= @volunteer.project.name %></h3>
 
-<form action="/albums/<%= @song.album.id %>/songs/<%= @song.id %>" method="post">
+<form action="/projects/<%= @volunteer.project.id %>/volunteers/<%= @volunteer.id %>" method="post">
   <input name="_method" type="hidden" value="patch">
 
-  <label for="name">Rename song</label>
+  <label for="name">Rename Volunteer</label>
   <input id="name" name="name" type="text">
 
-  <button type="submit">Update song</button>
+  <button type="submit">Update Volunteer</button>
 </form>
 
-<form action="/albums/<%= @song.album.id %>/songs/<%= @song.id %>" method="post">
+<form action="/projects/<%= @volunteer.project.id %>/volunteers/<%= @volunteer.id %>" method="post">
   <input name="_method" type="hidden" value="delete">
 
-  <button type="submit">Delete song</button>
+  <button type="submit">Delete Volunteer</button>
 </form>
 
-<a href="/albums/<%= @song.album.id %>">Back to <%= @song.album.name %></a>
+<form action="/projects/<%= @volunteers.project.id %>" method="get">
+<button type="submit"> Back <%= @volunteer.propject.title %></button>
