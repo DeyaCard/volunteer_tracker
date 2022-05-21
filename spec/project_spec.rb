@@ -1,6 +1,7 @@
-require 'spec_helper'
+require "spec_helper"
 
 describe Project do
+
   describe '#title' do
     it 'returns the project title' do
       project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
@@ -88,6 +89,15 @@ describe Project do
       project.save
       project.delete
       expect(Project.all).to eq []
+    end
+  end
+
+  describe('.search') do
+    it 'searches for a project by project name' do
+      project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+      project.save
+      project2 = Project.new({:title => 'Teaching Ruby to Kids', :id => nil})
+      project2.saveexpect(Project.search("Code")).to(eq([project]))
     end
   end
 end
