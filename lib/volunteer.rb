@@ -7,4 +7,70 @@ class Volunteer
     @project_id = attributes.fetch(:project_id)
     @id = attributes.fetch(:id)
   end
-  
+
+  def ==(change_volunteer)
+    if change_volunteer != nil
+      (self.name() == change_volunteer.name()) && (self.project_id() == change_volunteer.project_id())
+    else
+      false
+    end
+  end
+
+  def self.all
+    returned_volunteers = DB.exec("SELECT * FROM volunteers;")
+    volunteers = []
+    returned_volunteers.each() do |volunteer|
+      name = volunteer.fetch("name")
+      project_id = volunteer.fetch("project_id").to_i
+      id = volunteer.fetch("id").to_i
+      volunteers.push(volunteer.new({:name => name, :project_id => project_id, :id => id}))
+    end
+    volunteers
+  end
+
+  def save
+    result = DB.exec("INSERT INTO volunteers (name, project_id) VALUES ('#{@name}', #{@project_id}) RETURNING id;")
+    @id = result.first().fetch("id").to_i
+  end
+
+  def self.find(id)
+    volunteer = DB.exec("SELECT * FROM volunteers WHERE id = #{id};").first
+    if volunteer
+      name = volunteer.fetch("name")
+      project_id = volunteer.fetch("project_id").to_i
+      id = volunteer.fetch("id").to_i
+      volunteer.new({:name => name, :project_id => project_id, :id => id})
+    else
+      nil
+    end
+  end
+
+  def update(name, project_id)
+    @name = name
+    @project_id = project_id
+    DB.exec("UPDATE volunteers SET name = '#{@name}', project_id = #{@project_id} WHERE id = #{@id};")
+  end
+
+  def self.find_by_project(proj_id)
+    volunteers = []
+    returned_volunteers = DB.exec("SELECT * FROM volunteers WHERE project_id = #{proj_id};")
+    returned_volunteers.each() do |volunteer|
+      name = volunteer.fetch("name")
+      id = volunteer.fetch("id").to_i
+      volunteers.push(volunteer.new({:name => name, :project_id => proj_id, :id => id}))
+    end
+    volunteers
+  end
+
+  def delete
+    DB.exec("DELETE FROM volunteers WHERE id = #{@id};")
+  end
+
+  def self.clear
+    DB.exec("DELETE FROM volunteers *;")
+  end
+
+  def project
+    Project.find(@project_id)
+  end
+end

@@ -1,0 +1,23 @@
+<h1>Project Tracker</h1>
+
+<h3>Current Projects</h3>
+
+<% if @projects.any? %>
+  <ul>
+    <% @projects.each do |project| %>
+      <li><%= project.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There are currently no projects to display.</p>
+<% end %>
+
+<a href="/projects/new">Add a new project</a>
+
+<form action="/projects">
+  <div class="form-group">
+    <label for="search">Search</label>
+    <input id="search" name="search" class="form-control" type="text">
+  </div>
+  <button type="submit" class="btn">Go!</button>
+</form>
