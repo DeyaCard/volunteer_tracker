@@ -4,7 +4,7 @@ An application created to track projects and volunteers assigned to each project
 
 ## By Deya Card
 
-### Technologies used:
+## Technologies used:
 * Ruby
 * Gems
 * HTML
@@ -15,7 +15,7 @@ An application created to track projects and volunteers assigned to each project
 * SQL
 
 
-### Setup/Installation Requirements:
+## Setup/Installation Requirements:
 * Clone or download this repository onto your desktop: https://github.com/DeyaCard/volunteer_tracker
 * Navigate to top-level of directory
 * Open code editing software, such as VS Code
@@ -23,17 +23,17 @@ An application created to track projects and volunteers assigned to each project
 * $ ruby app.rb
 
 
-### User Stories:
-* User can view, add, uodate and delete projects
+## User Stories:
+* User can view, add, update and delete projects
 * User can view and add volunteers
 * User can add volunteers to a project
 
 
-### Known Bugs:
+## Known Bugs:
 *  (WIP)
 
 
-### License: 
+## License: 
 * MIT
 
 Copyright (c) 2022 Deya Card
