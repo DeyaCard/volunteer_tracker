@@ -6,11 +6,10 @@ require('pry')
 require('pg')
 also_reload('lib/**/*.rb')
 	
-DB = PG.connect({:dbname => "volunteer_tracker"})
+DB = PG.connect({:dbtitle => "volunteer_tracker"})
 
-get('/')do
-  @projects = Projects.all
-  erb(:projects)
+get('/') do
+  redirect to('/projects')
 end
 
 get('/projects') do
@@ -19,9 +18,9 @@ get('/projects') do
 end
 
 post('/projects') do
-  name = params[:project_title]
-  if name.length()>0
-    Project = Project.new({:name => name,:id => nil})
+  title = params[:project_title]
+  if title.length()>0
+    Project = Project.new({:title => title,:id => nil})
     Project.save()
     @projects = Project.all
     erb(:search_results)
@@ -30,9 +29,9 @@ post('/projects') do
   end
 end
 
-get('/projects/new') do
-  erb(:new_project)
-end
+# get('/projects/new') do
+#   erb(:new_project)
+# end
 
 patch('/projects/:id') do
   @project = Project.find(params[:id].to_i())
@@ -41,7 +40,7 @@ end
 
 patch('/projects/:id') do
   @project = Project.find(params[:id].to_i())
-  @project.update(params[:name])
+  @project.update(params[:title])
   @projects = Project.all
   erb(:projects)
 end
@@ -60,8 +59,8 @@ end
 
 post('/projects/:id/volunteers') do
   @project = Project.find(params[:id].to_i())
-  volunteer = Volunteer.new({:name => params[:volunteer_name], :project_id => @project.id,:id => nil})
-  if volunteer.name.length() > 0
+  volunteer = Volunteer.new({:title => params[:volunteer_title], :project_id => @project.id,:id => nil})
+  if volunteer.title.length() > 0
     volunteer.save()
     erb(:project)
   else
@@ -77,7 +76,7 @@ end
 patch('/projects/:id/volunteers/:voluteer_id') do
   @projects = Project.find(params[:id].to_i())
   volunteer = Volunteer.find(params[:volunteer_id].to_i())
-  volunteer.update(params[:name], @project.id)
+  volunteer.update(params[:title], @project.id)
   erb(:project)
 end
 
