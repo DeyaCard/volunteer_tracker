@@ -20,7 +20,7 @@ class Project
 
   def save
     result = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;")
-    @id = result.first.fetch("id").to_i
+    @id = result.first().fetch("id").to_i
   end
 
   def ==(project_to_compare)
@@ -40,7 +40,7 @@ class Project
     if project
       title = project.fetch("title")
       id = project.fetch("id").to_i
-      project.new({:title => title, :id => id})
+      Project.new({:title => title, :id => id})
     else
       nil
     end

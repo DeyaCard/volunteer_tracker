@@ -1,5 +1,5 @@
 <h2>Volunteer: <%= @volunteer.name %></h2>
-<h3>Project: <%= @volunteer.project.name %></h3>
+<h3>Project: <%= @volunteer.project.title %></h3>
 
 <form action="/projects/<%= @volunteer.project.id %>/volunteers/<%= @volunteer.id %>" method="post">
   <input name="_method" type="hidden" value="patch">
@@ -17,4 +17,5 @@
 </form>
 
 <form action="/projects/<%= @volunteers.project.id %>" method="get">
-<button type="submit"> Back <%= @volunteer.propject.title %></button>
+<button type="submit"> Back <%= @volunteer.project.title %></button>
+

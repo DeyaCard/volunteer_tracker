@@ -23,7 +23,7 @@ class Volunteer
       name = volunteer.fetch("name")
       project_id = volunteer.fetch("project_id").to_i
       id = volunteer.fetch("id").to_i
-      volunteers.push(volunteer.new({:name => name, :project_id => project_id, :id => id}))
+      volunteers.push(Volunteer.new({:name => name, :project_id => project_id, :id => id}))
     end
     volunteers
   end
@@ -39,7 +39,7 @@ class Volunteer
       name = volunteer.fetch("name")
       project_id = volunteer.fetch("project_id").to_i
       id = volunteer.fetch("id").to_i
-      volunteer.new({:name => name, :project_id => project_id, :id => id})
+      Volunteer.new({:name => name, :project_id => project_id, :id => id})
     else
       nil
     end
@@ -57,7 +57,7 @@ class Volunteer
     returned_volunteers.each() do |volunteer|
       name = volunteer.fetch("name")
       id = volunteer.fetch("id").to_i
-      volunteers.push(volunteer.new({:name => name, :project_id => proj_id, :id => id}))
+      volunteers.push(Volunteer.new({:name => name, :project_id => proj_id, :id => id}))
     end
     volunteers
   end

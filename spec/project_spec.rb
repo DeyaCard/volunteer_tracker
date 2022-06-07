@@ -78,7 +78,7 @@ describe Project do
     it 'allows a user to update a project' do
       project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
       project.save
-      project.update({:title => 'Teaching Ruby to Kids', :id => nil})
+      project.update('Teaching Ruby to Kids')
       expect(project.title).to eq 'Teaching Ruby to Kids'
     end
   end
@@ -92,12 +92,4 @@ describe Project do
     end
   end
 
-  describe('.search') do
-    it 'searches for a project by project name' do
-      project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
-      project.save
-      project2 = Project.new({:title => 'Teaching Ruby to Kids', :id => nil})
-      project2.saveexpect(Project.search("Code")).to(eq([project]))
-    end
-  end
 end
