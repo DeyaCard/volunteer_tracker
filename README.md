@@ -6,21 +6,26 @@ An application created to track projects and volunteers assigned to each project
 
 ## Technologies used:
 * Ruby
-* Gems
+* Capybara
 * HTML
-* CSS
+* Postgres
 * Gemfile
 * Sinatra
 * Pry
-* SQL
+* PSQL
 
 
 ## Setup/Installation Requirements:
 * Clone or download this repository onto your desktop: https://github.com/DeyaCard/volunteer_tracker
 * Navigate to top-level of directory
 * Open code editing software, such as VS Code
+
 * $ bundle install 
+* $ postgres
+* Recreate the database schema by running createdb [DATABASE NAME], psql [DATABASE NAME], createdb -T [DATABASE NAME] [TEST DATABASE NAME]
+* $ rspec to assure all tests are passing
 * $ ruby app.rb
+* Navigate to browser to enjoy app
 
 
 ## User Stories:
@@ -30,7 +35,7 @@ An application created to track projects and volunteers assigned to each project
 
 
 ## Known Bugs:
-*  (WIP)
+*  No known issues at time of publication
 
 
 ## License: 
